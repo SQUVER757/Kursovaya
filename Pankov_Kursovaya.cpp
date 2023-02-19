@@ -2,7 +2,7 @@
 int main()
 {
 	setlocale(LC_ALL, "rus");
-	int h1, m1, s1, h2, m2, s2;   //gggg
+	int h1, m1, s1, h2, m2, s2;   //gg
 	while (1)
 	{
 		cout << "Введите 1-е время для операций:" << endl;
