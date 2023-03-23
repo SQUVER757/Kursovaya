@@ -34,6 +34,11 @@ int main()
 			cout << "Такого формата записи времени не существует,попробуйте снова" << endl;
 		}
 	}
+	//TIME testsum;
+	//TIME time1(0, 0, 0);
+	//TIME time2(0, 0, 0);
+	//testsum = time1 + time2;
+	//testsum.print_time();
 	TIME time1(h1, m1, s1);
 	TIME time2(h2, m2, s2);
 	TIME time3;
@@ -92,6 +97,7 @@ int main()
 		cout << A[i]<<"\t";
 	}
 	cout << endl;
+	delete[] A;
 	return 0;
 }
 
