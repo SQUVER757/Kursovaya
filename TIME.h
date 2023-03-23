@@ -16,7 +16,8 @@ class TIME
 		TIME(const TIME& copy); // конструктор копирования
 		~TIME(); // деструктор, пустой, т.к. при работе с членами класса динамическая память используется в 1 методе, в котором и очищается
 		void print_time(); // вывод времени на экран
-		TIME operator=(TIME& other);
+		TIME operator +(TIME&sum);
+		TIME operator=(const TIME& other);
 		bool operator<(TIME& other);
 		bool operator>(TIME& other);
 		bool operator==(TIME& other);
