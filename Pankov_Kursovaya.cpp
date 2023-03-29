@@ -1,8 +1,9 @@
 ﻿#include "TIME.h"
+
 int main()
 {
 	setlocale(LC_ALL, "rus");
-	int h1, m1, s1, h2, m2, s2;   //gg
+/*	int h1, m1, s1, h2, m2, s2;   //gg
 	while (1)
 	{
 		cout << "Введите 1-е время для операций:" << endl;
@@ -34,12 +35,14 @@ int main()
 			cout << "Такого формата записи времени не существует,попробуйте снова" << endl;
 		}
 	}
-	//TIME testsum;
-	//TIME time1(0, 0, 0);
+	//TIME testsum;*/
+	TIME time2(3, 22, 10);
+	TIME time1(time2);
+	time1.print_time();
 	//TIME time2(0, 0, 0);
 	//testsum = time1 + time2;
 	//testsum.print_time();
-	TIME time1(h1, m1, s1);
+	/*TIME time1(h1, m1, s1);
 	TIME time2(h2, m2, s2);
 	TIME time3;
 	cout << "Время 1:" << endl;
@@ -96,8 +99,7 @@ int main()
 	{
 		cout << A[i]<<"\t";
 	}
-	cout << endl;
-	delete[] A;
+	cout << endl;*/
+	//delete[] A;
 	return 0;
 }
-
