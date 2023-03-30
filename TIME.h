@@ -11,30 +11,33 @@ class TIME
 		int S;
 
 	public:
-		TIME(); // конструктор с нулевым временем
-		TIME(int h, int m, int s); // конструктор с параметрами
-		TIME(const TIME& copy); // конструктор копирования
-		~TIME(); // деструктор, пустой, т.к. при работе с членами класса динамическая память используется в 1 методе, в котором и очищается
-		void print_time(); // вывод времени на экран
-		TIME operator+(TIME& sum);
-		TIME& operator++();
-		TIME operator++(int);
+		TIME(); // конструктор нулевого времени D
+		TIME(int h, int m, int s); // конструктор с параметрами D
+		TIME(const TIME& copy); // конструктор копирования D
+		~TIME(); // деструктор
 
-		TIME operator-(TIME& dif);
-		TIME& operator--();
-		TIME operator--(int);
+		void printt(); // вывод времени на экран 
 
-		TIME operator*(int multi);
-		TIME operator/(int div);
+		TIME operator+(TIME& add); //D
+		TIME& operator++(); // D
+		TIME operator++(int); // D
 
-		TIME operator+=(TIME& other);
-		TIME operator-=(TIME& other);
-		TIME operator=(const TIME& other);
+		TIME operator-(TIME& subtr); // D
+		TIME& operator--(); // D
+		TIME operator--(int); // D
 
-		bool operator<(TIME& other);
-		bool operator>(TIME& other);
-		bool operator==(TIME& other);
-		bool operator!=(TIME& other);
-		int& operator[](int index);
-		operator int*(); // возвращение объекта класса в виде одномерного массива (преобразование к базовому типу)
+		TIME operator*(int multi); // D
+		TIME operator/(int div); // D
+
+		TIME operator+=(TIME& add); // D
+		TIME operator-=(TIME& subtr); // D 
+		TIME operator=(const TIME& equal); // D
+
+		bool operator<(TIME& compare);
+		bool operator>(TIME& compare);
+		bool operator==(TIME& compare);
+		bool operator!=(TIME& compare);
+
+		int& operator[](int index); // D
+		operator int*(); // возвращение объекта класса в виде одномерного массива (преобразование к базовому типу) D
 };

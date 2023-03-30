@@ -21,109 +21,117 @@ TIME::TIME(const TIME& copy) // конструктор копировани€
 	this->S = copy.S;
 }
 
-TIME::~TIME() // деструктор, пустой, т.к. при работе с членами класса динамическа€ пам€ть используетс€ в 1 методе, в котором и очищаетс€
+TIME::~TIME() // деструктор
 {
 
 }
 
-void TIME::print_time() // вывод времени на экран
+//=====================================================================================
+
+void TIME::printt() // вывод времени на экран
 {
 	cout << "[" << H << ":" << M << ":" << S << "]" << endl;
 }
 
-TIME TIME::operator+(TIME& sum)
+//=====================================================================================
+
+TIME TIME::operator+(TIME& add) // врем€ + врем€
 {
-	TIME temp(0,0,0);
-	if (this->S + sum.S >= 60 )
+	TIME sum(0,0,0);
+	if (this->S + add.S >= 60 )
 	{
-		temp.S += (this->S + sum.S) - 60;
-		temp.M += 1;
+		sum.S += (this->S + add.S) - 60;
+		sum.M += 1;
 	}
 		else
 		{
-			temp.S += this->S + sum.S;
+			sum.S += this->S + add.S;
 		}
-	if (this->M + sum.M + temp.M >= 60)
+	if (this->M + add.M + sum.M >= 60)
 	{
-		temp.M += (this->M + sum.M) - 60;
-		temp.H += 1;
+		sum.M += (this->M + add.M) - 60;
+		sum.H += 1;
 	}
 		else
 		{
-			temp.M += this->M + sum.M;
+			sum.M += this->M + add.M;
 		}
-	if (this->H + sum.H + temp.H >= 24)
+	if (this->H + add.H + sum.H >= 24)
 		{
-			temp.H += (this->H + sum.H) - 24;         
+			sum.H += (this->H + add.H) - 24;         
 		}
 		else
 		{
-			temp.H += this->H + sum.H;
+			sum.H += this->H + add.H;
 		}
-	return temp;
+	return sum;
 }
 
-TIME& TIME::operator++()
+TIME& TIME::operator++() // врем€ + 1 секунда - префиксна€ форма
 {
 	TIME temp(0, 0, 1);
 	*this = *this + temp;
 	return *this;
 }
 
-TIME TIME::operator++(int)
+TIME TIME::operator++(int) // врем€ + 1 секунда - постфиксна€ форма
 {
 	TIME temp(*this);
 	++(*this);
 	return temp;
 }
 
-TIME TIME::operator-(TIME& dif)
+//=====================================================================================
+
+TIME TIME::operator-(TIME& subtr) // врем€ - врем€
 {
 	TIME temp(0, 0, 0);
-	if (this->S - dif.S < 0)
+	if (this->S - subtr.S < 0)
 	{
-		temp.S += 60 + (this->S - dif.S);
+		temp.S += 60 + (this->S - subtr.S);
 		temp.M -= 1;
 	}
 		else
 		{
-			temp.S += this->S - dif.S;
+			temp.S += this->S - subtr.S;
 		}
-	if (this->M + temp.M - dif.M < 0)
+	if (this->M + temp.M - subtr.M < 0)
 	{
-		temp.M += 60 + (this->M - dif.M);
+		temp.M += 60 + (this->M - subtr.M);
 		temp.H -= 1;
 	}
 		else
 		{
-			temp.M += this->M - dif.M;
+			temp.M += this->M - subtr.M;
 		}
-	if (this->H + temp.H - dif.H < 0)
+	if (this->H + temp.H - subtr.H < 0)
 	{
-		temp.H += 24 + (this->H - dif.H);
+		temp.H += 24 + (this->H - subtr.H);
 	}
 		else
 		{
-			temp.H += this->H - dif.H;
+			temp.H += this->H - subtr.H;
 		}
 	return temp;
 }
 
-TIME& TIME::operator--()
+TIME& TIME::operator--() // врем€ - 1 секунда - префиксна€ форма
 {
 	TIME temp(0, 0, 1);
 	*this = *this - temp;
 	return *this;
 }
 
-TIME TIME::operator--(int)
+TIME TIME::operator--(int) // врем€ - 1 секунда - постфиксна€ форма
 {
 	TIME temp(*this);
 	--(*this);
 	return temp;
 }
 
-TIME TIME::operator*(int multi)
+//=====================================================================================
+
+TIME TIME::operator*(int multi) // врем€ * число
 {
 	int secs = this->S + this->M * 60 + this->H * 3600;
 	secs *= multi;
@@ -134,7 +142,7 @@ TIME TIME::operator*(int multi)
 	return result;
 }
 
-TIME TIME::operator/(int div)
+TIME TIME::operator/(int div) // врем€ / число
 {
 	int secs = this->S + this->M * 60 + this->H * 3600;
 	secs /= div;
@@ -145,109 +153,68 @@ TIME TIME::operator/(int div)
 	return result;
 }
 
-TIME TIME::operator+=(TIME& other)
+//=====================================================================================
+
+TIME TIME::operator+=(TIME& add) // врем€ += врем€
 {
-	*this = *this + other;
+	*this = *this + add;
 	return *this;
 }
 
-TIME TIME::operator-=(TIME& other)
+TIME TIME::operator-=(TIME& subtr) // врем€ -= врем€
 {
-	*this = *this - other;
+	*this = *this - subtr;
 	return *this;
 }
 
-TIME TIME::operator=(const TIME& other)
+TIME TIME::operator=(const TIME& equal) // врем€ = врем€
 {
-	this->H = other.H;
-	this->M = other.M;
-	this->S = other.S;
+	this->H = equal.H;
+	this->M = equal.M;
+	this->S = equal.S;
 	return *this;
 }
-bool TIME::operator<(TIME& other)
+
+//=====================================================================================
+
+bool TIME::operator<(TIME& compare) // врем€ < врем€
 {
-	if (this->H < other.H)
-	{
-		return true;
-	}
-	else
-	{
-		if (this->H == other.H && this->M < other.M)
-		{
-			return true;
-		}
-		else
-		{
-			if (this->M == other.M && this->S < other.S)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-	}
+	if (this->H < compare.H) return true;
+	if (this->H == compare.H && this->M < compare.M) return true;
+	if (this->M == compare.M && this->S < compare.S) return true;
+	return false;
 }
 
-bool TIME::operator>(TIME& other)
+bool TIME::operator>(TIME& compare) // врем€ > врем€
 {
-	if (this->H > other.H)
-	{
-		return true;
-	}
-	else if (this->H == other.H && this->M > other.M)
-		{
-			return true;
-		}
-		else if (this->M == other.M && this->S > other.S)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		
+	if (this->H > compare.H) return true;
+	if (this->H == compare.H && this->M > compare.M) return true;
+	if (this->M == compare.M && this->S > compare.S) return true;
+	return false;
 }
 
-bool TIME::operator==(TIME& other)
+bool TIME::operator==(TIME& compare) // врем€ == врем€
 {
-	if (this->H == other.H && this->M == other.M && this->S == other.S)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	if (this->H == compare.H && this->M == compare.M && this->S == compare.S) return true;
+	return false;
 }
 
-bool TIME::operator!=(TIME& other)
+bool TIME::operator!=(TIME& compare) // врем€ != врем€
 {
-	if (this->H != other.H || this->M != other.M || this->S != other.S)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	if (this->H != compare.H || this->M != compare.M || this->S != compare.S) return true;
+	return false;
 }
 
-int& TIME::operator[](int index)
+//===============================================================================
+
+int& TIME::operator[](int index) // вз€тие элемента члена класса по индексу
 {
-	if (index == 0)
-		return H;
-	else if (index == 1)
-		return M;
-	else if (index == 2)
-		return S;
-	else
-		throw out_of_range("Index out of range");
+	if (index == 0) return H;
+	if (index == 1) return M;
+	if (index == 2) return S;
 }
 
-TIME::operator int*() // возвращение объекта класса в виде одномерного массива (преобразование к базовому типу)
+TIME::operator int*() // возвращение объекта класса в виде одномерного массива
 {
 	int* A = new int [3];
 	A[0] = H;
