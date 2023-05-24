@@ -1,43 +1,62 @@
 #pragma once
+
 #include <iostream>
 #include <locale.h>
+
 using namespace std;
 
 class TIME
 {
 	private:
-		int H;
-		int M;
-		int S;
+		int H; // часы
+		int M; // минуты
+		int S; // секунды
 
 	public:
-		TIME(); // конструктор нулевого времени D
-		TIME(int h, int m, int s); // конструктор с параметрами D
-		TIME(const TIME& copy); // конструктор копирования D
+		TIME(); // конструктор нулевого времени 
+		TIME(int h, int m, int s); // конструктор с параметрами  
+		TIME(const TIME& copy); // конструктор копирования 
+
 		~TIME(); // деструктор
+
 
 		void printt(); // вывод времени на экран 
 
-		TIME operator+(TIME& add); //D
-		TIME& operator++(); // D
-		TIME operator++(int); // D
 
-		TIME operator-(TIME& subtr); // D
-		TIME& operator--(); // D
-		TIME operator--(int); // D
+		TIME operator+(TIME add); // время + время 
+		TIME operator+(int add); // время + число 
 
-		TIME operator*(int multi); // D
-		TIME operator/(int div); // D
+		TIME operator+=(TIME add); //  время += время 
+		TIME operator+=(int add); // время += число 
 
-		TIME operator+=(TIME& add); // D
-		TIME operator-=(TIME& subtr); // D 
-		TIME operator=(const TIME& equal); // D
+		TIME& operator++(); //   ++time 
+		TIME operator++(int); // time++ 
 
-		bool operator<(TIME& compare);
-		bool operator>(TIME& compare);
-		bool operator==(TIME& compare);
-		bool operator!=(TIME& compare);
 
-		int& operator[](int index); // D
-		operator int*(); // возвращение объекта класса в виде одномерного массива (преобразование к базовому типу) D
+		TIME operator-(TIME subtr); //  время - время 
+		TIME operator-(int add); // время - число 
+
+		TIME operator-=(TIME subtr); //   время -= время 
+		TIME operator-=(int subtr); // время -= число 
+
+		TIME& operator--(); // --time 
+		TIME operator--(int); // time-- 
+
+
+		TIME operator*(int multi); //  время * число 
+		TIME operator/(int div); //  время / число 
+
+
+		TIME operator=(const TIME& equal); //  время = время 
+		TIME operator=(int equal); // время = число 
+
+
+		bool operator<(TIME compare);  // время < время
+		bool operator>(TIME compare);  // время > время
+		bool operator==(TIME compare);  // время == время
+		bool operator!=(TIME compare);  // время != время
+
+
+		int& operator[](int index); //  взятие элемента класса по индексу
+		operator int*(); // возвращение объекта класса в виде одномерного массива (преобразование к базовому типу) 
 };

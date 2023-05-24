@@ -3,88 +3,141 @@
 int main()
 {
 	setlocale(LC_ALL, "rus");
-	TIME null;
-	cout << "Время, заданное конструктором нулевого времени:" << endl;
-	null.printt();
-	TIME parameter(21, 12, 34);
-	cout << "Время, заданное конструктором с параметрами:" << endl;
-	parameter.printt();
-	TIME copy(parameter);
-	cout << "Копия времени, заданного конструктором с параметрами:" << endl;
-	copy.printt();
-	cout << "Время, заданное конструктором с параметрами, возвращенное в ввиде одномерного массива:" << endl;
-	int* A = parameter;
-	cout << "[" << A[0] << ":" << A[1] << ":" << A[2] << "]" << endl;
+	int add = 127;
+	TIME timeNULL;
+	TIME timeParameter(20, 13, 47);
+	TIME timeCopy(timeParameter);
+
+	cout << "Время, созданное конструктором нулевого времени: "; timeNULL.printt();
+	cout << endl;
+	cout << "\nВремя, созданное конструктором времени с параметрами: "; timeParameter.printt();
+	cout << endl;
+	cout << "\nСкопированное время, созданное конструктором с параметрами: "; timeCopy.printt();
+	cout << endl;
+
+
+	cout << "\nПрисвоение времени "; timeParameter.printt(); cout << " параметров времени "; timeNULL.printt();
+	timeParameter = timeNULL;
+	cout << " : время после присвоения"; timeParameter.printt();
+	cout << endl;
+
+	cout << "\nПрисвоение времени "; timeParameter.printt(); cout << " значения числа " << add ;
+	timeParameter = add;
+	cout << " : время после присвоения "; timeParameter.printt();
+	cout << endl;
+
+
+	TIME timeAdd1(21, 50, 57), timeAdd2(7, 37, 57);
+	TIME timeSum = timeAdd1 + timeAdd2; // ВРЕМЯ + ВРЕМЯ
+	cout << "\nВремя "; timeAdd1.printt(); cout << " + "; cout << "Время "; timeAdd2.printt();
+	cout << " = "; timeSum.printt();
+	cout << endl;
+ 
+	cout << "\nВремя "; timeSum.printt(); cout << " + "; cout << add; // ВРЕМЯ + ЧИСЛО
+	timeSum = timeSum + add;
+	cout << " = "; timeSum.printt();
+	cout << endl;
+
+	cout << "\nВремя "; timeSum.printt(); cout << " += "; cout << "Время "; timeAdd1.printt(); // ВРЕМЯ += ВРЕМЯ
+	timeSum += timeAdd1;
+	cout << " = "; timeSum.printt();
+	cout << endl;
+
+	cout << "\nВремя "; timeSum.printt(); cout << " += "; cout << add; // ВРЕМЯ += ЧИСЛО
+	timeSum += add;
+	cout << " = "; timeSum.printt();
+	cout << endl;
+
+	cout << "\nВремя "; timeSum.printt(); cout << " ++ в префиксной форме "; // ++ВРЕМЯ 
+	++timeSum;
+	cout << " = "; timeSum.printt();
+	cout << endl;
+
+	cout << "\nВремя "; timeSum.printt(); cout << " ++ в постфиксной форме "; // ВРЕМЯ++ 
+	timeSum++;
+	cout << " = "; timeSum.printt();
+	cout << endl;
+
+
+	TIME timeMinuend(21, 12, 17), timeSubtr(12, 21, 51); // ВРЕМЯ - ВРЕМЯ
+	TIME timeDiff = timeMinuend - timeSubtr;
+	cout << "\nВремя "; timeMinuend.printt(); cout << " - "; cout << "Время "; timeSubtr.printt();
+	cout << " = "; timeDiff.printt();
+	cout << endl;
+
+	cout << "\nВремя "; timeDiff.printt(); cout << " - "; cout << add; // ВРЕМЯ - ЧИСЛО
+	timeDiff = timeDiff - add;
+	cout << " = "; timeDiff.printt();
+	cout << endl;
+
+	cout << "\nВремя "; timeDiff.printt(); cout << " -= "; cout << "Время "; timeSubtr.printt(); // ВРЕМЯ -= ВРЕМЯ
+	timeDiff -= timeSubtr;
+	cout << " = "; timeDiff.printt();
+	cout << endl;
+
+	cout << "\nВремя "; timeDiff.printt(); cout << " -= "; cout << add; // ВРЕМЯ -= ЧИСЛО
+	timeDiff -= add;
+	cout << " = "; timeDiff.printt();
+	cout << endl;
+
+	cout << "\nВремя "; timeDiff.printt(); cout << " -- в префиксной форме "; // --ВРЕМЯ 
+	--timeDiff;
+	cout << " = "; timeDiff.printt();
+	cout << endl;
+
+	cout << "\nВремя "; timeDiff.printt(); cout << " -- в постфиксной форме "; // ВРЕМЯ-- 
+	timeDiff--;
+	cout << " = "; timeDiff.printt();
+	cout << endl;
+
+
+	int multi = 7; // ВРЕМЯ * ЧИСЛО
+	TIME timeMultiplied(17, 21, 43);
+	TIME timeProduct = timeMultiplied * multi;
+	cout << "\nВремя "; timeMultiplied.printt(); cout << " * "; cout << multi;
+	cout << " = "; timeProduct.printt();
+	cout << endl;
+
+	int div = 3; // ВРЕМЯ / ЧИСЛО
+	TIME timeDivisible(19, 15, 31);
+	TIME timeQuot = timeDivisible / div;
+	cout << "\nВремя "; timeDivisible.printt(); cout << " / "; cout << div;
+	cout << " = "; timeQuot.printt();
+	cout << endl;
+
+	// ОПЕРАЦИИ СРАВНЕНИЯ
+	TIME timeCompare1(3, 2, 2), timeCompare2(1, 33, 7);
+
+	cout << "\nВремя "; timeCompare1.printt(); cout << " <  Времени "; timeCompare2.printt(); cout << " ? " << endl;
+	if (timeCompare1 < timeCompare2) cout << "\nДА!" << endl;
+	else cout << "\nНЕТ!" << endl;
+
+	cout << "\nВремя "; timeCompare1.printt(); cout << " >  Времени "; timeCompare2.printt(); cout << " ? " << endl;
+	if (timeCompare1 > timeCompare2) cout << "\nДА!" << endl;
+	else cout << "\nНЕТ!" << endl;
+
+	cout << "\nВремя "; timeCompare1.printt(); cout << " ==  Времени "; timeCompare2.printt(); cout << " ? " << endl;
+	if (timeCompare1 == timeCompare2) cout << "\nДА!" << endl;
+	else cout << "\nНЕТ!" << endl;
+
+	cout << "\nВремя "; timeCompare1.printt(); cout << " !=  Времени "; timeCompare2.printt(); cout << " ? " << endl;
+	if (timeCompare1 != timeCompare2) cout << "\nДА!" << endl;
+	else cout << "\nНЕТ!" << endl;
+
+
+	TIME time4other(19, 16, 6); // ОСТАЛЬНОЕ
+
+	cout << "\nВзятие элементов члена класса "; time4other.printt(); 
+	cout << " по индексам его элементов : Часы Времени ["; cout << time4other[0];
+	cout << "] Минуты времени ["; cout << time4other[1]; cout << "] Секунды времени ["; 
+	cout << time4other[2]; cout << "]" << endl;
+
+	int* A = time4other;
+	cout << "\nВремя "; time4other.printt(); cout << " возвращенное в виде одномерного массива ";
+	cout << " [";
+	for (int i = 0; i < 3; i++) cout << " " << A[i] << " ";
+	cout << "]" << endl;
 	delete[] A;
-
-
-	TIME add1(23, 45, 58), add2(7, 23, 36);
-	TIME sum = add1 + add2;
-	cout << "Время [" << add1[0] << ":" << add1[1] << ":" << add1[2] << "]" << " + " 
-		<< "Время [" << add2[0] << ":" << add2[1] << ":" << add2[2] << "]:" << endl;
-	sum.printt();
-	cout << "Время [" << add1[0] << ":" << add1[1] << ":" << add1[2] << "]" << " ++ в префиксной форме:" << endl;
-	++add1;
-	add1.printt();
-	cout << "Время [" << add1[0] << ":" << add1[1] << ":" << add1[2] << "]" << " ++ в постфиксной форме:" << endl;
-	add1++;
-	add1.printt();
-
-
-	TIME min(19, 7, 18), subtr(8, 5, 27);
-	TIME dif = min - subtr;
-	cout << "Время [" << min[0] << ":" << min[1] << ":" << min[2] << "]" << " - "
-		<< "Время [" << subtr[0] << ":" << subtr[1] << ":" << subtr[2] << "]:" << endl;
-	dif.printt();
-	cout << "Время [" << min[0] << ":" << min[1] << ":" << min[2] << "]" << " -- в префиксной форме:" << endl;
-	--min;
-	min.printt();
-	cout << "Время [" << min[0] << ":" << min[1] << ":" << min[2] << "]" << " -- в постфиксной форме:" << endl;
-	min--;
-	min.printt();
-
-
-	TIME time(15, 57, 45);
-	TIME prod = time * 11;
-	cout << "Время [" << time[0] << ":" << time[1] << ":" << time[2] << "]" << " * 11:" << endl;
-	prod.printt();
-	TIME quot = time / 5;
-	cout << "Время [" << time[0] << ":" << time[1] << ":" << time[2] << "]" << " / 5:" << endl;
-	quot.printt();
-
-
-	TIME add3(17, 51, 20), add4(20, 31, 14);
-	cout << "Время [" << add3[0] << ":" << add3[1] << ":" << add3[2] << "]" << " += "
-		<< "Время [" << add4[0] << ":" << add4[1] << ":" << add4[2] << "]:" << endl;
-	add3 += add4;
-	add3.printt();
-	TIME dif1(15, 22, 39), dif2(5, 23, 40);
-	cout << "Время [" << dif1[0] << ":" << dif1[1] << ":" << dif1[2] << "]" << " -= "
-		<< "Время [" << dif2[0] << ":" << dif2[1] << ":" << dif2[2] << "]:" << endl;
-	dif1 -= dif2;
-	dif1.printt();
-
-
-	TIME compare1(19, 11, 44), compare2(17, 11, 43);
-	cout << "Время [" << compare1[0] << ":" << compare1[1] << ":" << compare1[2] << "]" << " < "
-		<< "Время [" << compare2[0] << ":" << compare2[1] << ":" << compare2[2] << "] ?:" << endl;
-	if (compare1 < compare2) cout << "ДА" << endl;
-	else cout << "НЕТ" << endl;
-
-	cout << "Время [" << compare1[0] << ":" << compare1[1] << ":" << compare1[2] << "]" << " > "
-		<< "Время [" << compare2[0] << ":" << compare2[1] << ":" << compare2[2] << "] ?:" << endl;
-	if (compare1 > compare2) cout << "ДА" << endl;
-	else cout << "НЕТ" << endl;
-
-	cout << "Время [" << compare1[0] << ":" << compare1[1] << ":" << compare1[2] << "]" << " == "
-		<< "Время [" << compare2[0] << ":" << compare2[1] << ":" << compare2[2] << "] ?:" << endl;
-	if (compare1 == compare2) cout << "ДА" << endl;
-	else cout << "НЕТ" << endl;
-
-	cout << "Время [" << compare1[0] << ":" << compare1[1] << ":" << compare1[2] << "]" << " != "
-		<< "Время [" << compare2[0] << ":" << compare2[1] << ":" << compare2[2] << "] ?:" << endl;
-	if (compare1 != compare2) cout << "ДА" << endl;
-	else cout << "НЕТ" << endl;
 
 
 	return 0;
